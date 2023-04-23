@@ -405,8 +405,12 @@ impl KeepOptions {
 
         for (check_fun, counter, reason1, within, reason2) in keep_checks {
             if !has_next || last.is_none() || !check_fun(sn, last.unwrap()) {
-                if let Some(c) = if *counter == -1 { Some(-1) } else { counter.checked_sub(1) } {
-                    *counter = c;
+                if *counter > 0 {
+                    *counter -= 1;
+                    keep = true;
+                    reason.push(reason1);
+                }
+                if *counter == -1 {
                     keep = true;
                     reason.push(reason1);
                 }
