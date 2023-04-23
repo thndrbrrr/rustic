@@ -182,7 +182,7 @@ pub(super) struct KeepOptions {
     keep_last: i32,
 
     /// Keep the last N hourly snapshots (N == -1: keep all hourly snapshots)
-    #[clap(long, short = 'H', value_name = "N", default_value = "0")]
+    #[clap(long, short = 'H', value_name = "N", default_value = "0", allow_hyphen_values = true)]
     #[merge(strategy=merge::num::overwrite_zero)]
     keep_hourly: i32,
 
